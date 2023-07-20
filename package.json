@@ -1,0 +1,12 @@
+{
+  "name": "colour-wheel",
+  "version": "1.0.0",
+  "description": "A colour wheel and palette generator",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
