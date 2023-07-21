@@ -3,9 +3,12 @@ const calcHypotenuse = (x,y) => {
     return Math.sqrt(x*x + y*y)
 }
 
+const calcAngleRadians = (x,y) => {
+    return Math.atan2(y, x)
+}
 
 const calcAngleDegrees = (x, y) => {
-    const radians = Math.atan2(y, x)
+    const radians = calcAngleRadians(x,y)
     // Convert radians to degrees
     return (180 / Math.PI) * (radians + Math.PI)
 }
@@ -15,4 +18,30 @@ const calcCircleBounds = (x, y, radius) => {
     return r < radius
 }
 
-export {calcHypotenuse, calcAngleDegrees, calcCircleBounds}
+const polar2Cartesian = (r, theta, radius) => {
+    const x = r * Math.cos(theta) + radius
+    const y = r * Math.sin(theta) + radius
+    return {x, y}
+}
+
+const combineValues = (x,y) => {
+    return x << 16 | y
+}
+
+// Maps each cartesian coord to a polar coord. The key is a mapping of the x and y values
+// and to retrieve polar coords you must use the combineValues function in mathUtils.js
+const createCoordConversionMaps= (width, height, radius) => {
+let cartesian2PolarCoords = {}
+
+for (let x = 0; x < width; x++) {
+    for (let y = 0; y < height; y++) {
+    const r = calcHypotenuse(x-radius,y-radius)
+    const theta = calcAngleRadians(x-radius,y-radius)
+    cartesian2PolarCoords[combineValues(x, y)] = {r, theta}
+
+}
+}
+return {cartesian2PolarCoords}
+}
+
+export {calcHypotenuse, calcAngleDegrees, calcCircleBounds, createCoordConversionMaps, combineValues, polar2Cartesian}

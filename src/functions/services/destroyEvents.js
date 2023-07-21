@@ -1,6 +1,6 @@
-const destroyEvents = (eventsData) => {
-for (const key in eventsData.activeListeners) {
-    eventsData.element.removeEventListener(key, eventsData.activeListeners[key]); // Fails
+const destroyEvents = (element, events) => {
+for (const key in events) {
+    element.removeEventListener(key, events[key].eventCB); 
 }
 }
 

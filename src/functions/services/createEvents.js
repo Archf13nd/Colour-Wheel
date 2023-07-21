@@ -1,36 +1,29 @@
-import { calcCircleBounds } from "../util/mathUtil.js"
+const events = {}
 
-const eventsData = {
-    element: null,
-    activeListeners: {},
-    x: 0,
-    y: 0,
-    click: false,
+const createEvent = (theEvent, func, element) => {
+element.addEventListener(theEvent, func)
+// Assigns the cb without removing any existing methods
+events[theEvent] = {...events[theEvent], eventCB: func}
 }
 
-const registerEventFunctions = (element) => {
-    const handleMouseMove = (e) => {
-        if (!calcCircleBounds(e.offsetX, e.offsetY, element.width / 2)) {
-             eventsData.x = e.offsetX
-              eventsData.y = e.offsetY
-            }
-        }
-
-    return [handleMouseMove]
+const callFunctions = (e) => {
+for (const key in events[e.type]) {
+    if (key === 'eventCB') {
+        continue
+    }
+    events[e.type][key](e)
+    }
 }
 
 
-const events = (element) => {
-eventsData.element = element
 
-const [handleMouseMove] = registerEventFunctions(element)
+const createEvents = (element) => {
 
-
-element.addEventListener('mousemove', handleMouseMove)
-eventsData.activeListeners['mousemove'] = handleMouseMove
-
-return eventsData
+createEvent('mousemove', callFunctions, element)
+createEvent('mousedown', callFunctions, element)
+createEvent('mouseup', callFunctions, element)
+return events
 }
 
 
-export default events
+export default createEvents
