@@ -11,7 +11,7 @@ const calcAngleRadians = (x, y) => {
 }
 
 const calcAngleDegrees = (x, y) => {
-  const radians = calcAngleRadians(x, y)
+  const radians = -calcAngleRadians(x, y)
   // Convert radians to degrees
   return (180 / Math.PI) * (radians + Math.PI)
 }
