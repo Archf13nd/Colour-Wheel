@@ -1,7 +1,5 @@
-import state from '../state.js'
-
-const resetWheel = () => {
-  state.ctx.putImageData(state.wheelImage, 0, 0)
+const resetWheel = (ctx, wheelImage) => {
+  ctx.putImageData(wheelImage, 0, 0)
 }
 
 export default resetWheel

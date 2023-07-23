@@ -3,32 +3,36 @@ import createEvents from './models/createEvents.js'
 import state from './state.js'
 import registerElements from './models/registerElements.js'
 import { createCoordConversionMaps } from './util/mathUtil.js'
-import canvasEvents from './views/canvasEvents.js'
+import initCanvasEvents from './views/canvasEvents.js'
 
 registerElements()
 
-state.canvas = document.getElementById('color-wheel')
-state.ctx = state.canvas.getContext('2d')
-const size = Math.max(state.canvas.width, state.canvas.height)
-if (state.canvas.width !== state.canvas.height) {
-  state.canvas.width = size
-  state.canvas.height = size
+const canvas = document.getElementById('color-wheel')
+const ctx = canvas.getContext('2d')
+state.write('canvas', canvas)
+state.write('ctx', ctx)
+
+const size = Math.max(canvas.width, canvas.height)
+if (canvas.width !== canvas.height) {
+  canvas.width = size
+  canvas.height = size
 }
-state.radius = size / 2
+const radius = size / 2
+state.write('radius', radius)
 
 // Set default x and y positions
-state.mouseX = state.radius
-state.mouseY = state.radius - state.canvas.width / 5
+state.write('mouseX', radius)
+state.write('mouseY', radius - canvas.width / 5)
 
 // Init conversion map inside mathUtil.js
-createCoordConversionMaps(state.canvas.width, state.canvas.height, size / 2)
+createCoordConversionMaps(canvas.width, canvas.height, size / 2)
 
-state.wheelImage = generateWheelImage(state)
-state.ctx.putImageData(state.wheelImage, 0, 0)
+const wheelImage = generateWheelImage(canvas, ctx)
+state.write('wheelImage', wheelImage)
+ctx.putImageData(wheelImage, 0, 0)
 
-state.events = createEvents(state.canvas, 'mousedown', 'mouseup', 'mousemove')
-
-console.log(state.events)
+const events = createEvents(canvas, 'mousedown', 'mouseup', 'mousemove')
+state.write('events', events)
 
 // state.events['cw-complementary-btn'].click.changeHarmony = () => {
 //   state.harmony = 'complementary'
@@ -38,4 +42,4 @@ console.log(state.events)
 //   state.harmony = 'triad'
 //   handleDraw()
 // }
-canvasEvents(state)
+initCanvasEvents(events['color-wheel'])

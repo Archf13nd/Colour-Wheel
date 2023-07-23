@@ -1,21 +1,18 @@
 import updateTargets from '../controllers/updateTargets.js'
 
-export default (state) => {
-  state.events['color-wheel'].mousemove.updateMousePos = (e) => {
+export default (canvasEvents) => {
+  console.log(canvasEvents)
+
+  canvasEvents.mousemove.updateMousePos = (e) => {
     updateTargets(e.offsetX, e.offsetY)
   }
 
-  state.events['color-wheel'].mousedown.recordMouseDown = (e) => {
-    state.mousedown = true
+  canvasEvents.mousedown.recordMouseDown = (e) => {
     updateTargets(e.offsetX, e.offsetY)
   }
-  state.events['color-wheel'].mouseup.recordMouseUp = () => {
-    state.mousedown = false
-  }
+  canvasEvents.mouseup.recordMouseUp = () => {}
 
-  state.events['color-wheel'].mousemove.moveTarget = (e) => {
-    if (state.mousedown) {
-      updateTargets(e.offsetX, e.offsetY)
-    }
+  canvasEvents.mousemove.moveTarget = (e) => {
+    updateTargets(e.offsetX, e.offsetY)
   }
 }

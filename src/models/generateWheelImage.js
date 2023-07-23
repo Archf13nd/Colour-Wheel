@@ -1,7 +1,7 @@
 import convertHSV2RGB from '../util/convertHSV2RGB.js'
 import { calcAngleDegrees, calcCircleBounds, calcHypotenuse } from '../util/mathUtil.js'
 
-export default ({ canvas, ctx }) => {
+export default (canvas, ctx) => {
   if (canvas.width !== canvas.height) {
     throw new Error('Canvas width is not equal to canvas height')
   }
