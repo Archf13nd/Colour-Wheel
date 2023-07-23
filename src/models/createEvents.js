@@ -1,36 +1,30 @@
-const events = {}
+import callCanvasEventFunctions from '../views/callCanvasEventFunctions.js'
+import callButtonEventFunctions from '../views/callButtonEventFunctions.js'
 
 const createEvent = (theEvent, cb, element) => {
   element.addEventListener(theEvent, cb)
   // Assigns the cb without removing any existing methods
-  events[element.id] = { ...events[element.id] }
-  events[element.id][theEvent] = { ...events[element.id][theEvent], eventCB: cb }
+  return { theEvent, cb }
 }
 
 // Returns cb function used in event listeners
 // while keeping id in memory with closure
-const createCBfunction = (eventID) => {
-  const id = eventID
+const createCBfunction = (element) => {
+  const tag = element.tagName
+
   return (e) => {
-    for (const key in events[id][e.type]) {
-      if (key === 'eventCB') {
-        continue
-      }
-      // Gets the events of element with id in function's lexical scope from closure
-      // Gets the type of event registered, e.g. mousemove
-      // Gets and calls each method stored within
-      events[id][e.type][key](e)
+    if (tag === 'CANVAS') {
+      callCanvasEventFunctions(e)
+    }
+    if (tag === 'BUTTON') {
+      callButtonEventFunctions(e)
     }
   }
 }
 
-const createEvents = (element, ...newEvents) => {
-  newEvents.forEach((e) => {
-    const cb = createCBfunction(element.id)
-    createEvent(e, cb, element)
-  })
-
-  return events
+const createEvents = (element, newEvent) => {
+  const cb = createCBfunction(element)
+  return createEvent(newEvent, cb, element)
 }
 
 export default createEvents

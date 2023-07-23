@@ -1,11 +1,10 @@
+import updateTargets from './controllers/updateTargets.js'
 import generateWheelImage from './models/generateWheelImage.js'
-import createEvents from './models/createEvents.js'
 import state from './state.js'
-import registerElements from './models/registerElements.js'
 import { createCoordConversionMaps } from './util/mathUtil.js'
-import initCanvasEvents from './views/canvasEvents.js'
+import registerAllElements from './views/registerAllElements.js'
 
-registerElements()
+// registerElements()
 
 const canvas = document.getElementById('color-wheel')
 const ctx = canvas.getContext('2d')
@@ -31,15 +30,6 @@ const wheelImage = generateWheelImage(canvas, ctx)
 state.write('wheelImage', wheelImage)
 ctx.putImageData(wheelImage, 0, 0)
 
-const events = createEvents(canvas, 'mousedown', 'mouseup', 'mousemove')
-state.write('events', events)
+registerAllElements()
 
-// state.events['cw-complementary-btn'].click.changeHarmony = () => {
-//   state.harmony = 'complementary'
-//   handleDraw()
-// }
-// state.events['cw-triad-btn'].click.changeHarmony = () => {
-//   state.harmony = 'triad'
-//   handleDraw()
-// }
-initCanvasEvents(events['color-wheel'])
+updateTargets(true)

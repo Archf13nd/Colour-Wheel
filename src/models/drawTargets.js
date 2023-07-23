@@ -1,7 +1,6 @@
 import createSmallCircle from './createSmallCircle.js'
 
 const drawTargets = (ctx, coords) => {
-  console.log(coords)
   coords.forEach((e, i) => {
     let path
     if (i === 0) {

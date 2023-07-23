@@ -5,7 +5,7 @@ import drawTargets from '../models/drawTargets.js'
 import state from '../state.js'
 import resetWheel from '../models/resetWheel.js'
 
-export default (x, y) => {
+export default (force = false) => {
   // Where on the canvas user clicked
   // Is click within bounds of wheel?
   // Update State
@@ -13,14 +13,16 @@ export default (x, y) => {
   // get position of secondary target/s
   // call update canvas with new data
 
-  const radius = state.read('radius')
+  const x = state.read('mouseX')
+  const y = state.read('mouseY')
 
+  const radius = state.read('radius')
   if (!calcCircleBounds(x - radius, y - radius, radius)) {
     return
   }
-  //   if (state.mousedown) {
-  //     return
-  //   }
+  if (!state.read('isMouseDown') && !force) {
+    return
+  }
 
   // Deletes current painted targets
   const ctx = state.read('ctx')
