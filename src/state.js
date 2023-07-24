@@ -1,6 +1,8 @@
 const state = {
+  root: null,
   canvas: null,
   ctx: null,
+  colors: [],
   eventListeners: {},
   wheelImage: null,
   targets: [],
@@ -8,23 +10,35 @@ const state = {
   mouseY: null,
   radius: null,
   isMouseDown: null,
-  harmony: 'triad',
+  harmony: 'triadic',
   elements: [
     {
       id: 'color-wheel',
-      events: ['mousemove', 'mousedown', 'mouseup']
+      events: ['mousemove', 'mousedown', 'mouseup', 'mouseleave']
     },
     {
       id: 'cw-btn-complementary',
       events: ['click']
     },
     {
-      id: 'cw-btn-triad',
+      id: 'cw-btn-triadic',
+      events: ['click']
+    },
+    {
+      id: 'cw-btn-tetradic',
+      events: ['click']
+    },
+    {
+      id: 'cw-btn-analogous',
       events: ['click']
     },
     {
       id: 'cw-palette',
       events: ['click']
+    },
+    {
+      id: 'cw-select-colors',
+      events: ['change']
     }
   ]
 }

@@ -4,6 +4,8 @@ import mapCoords from '../models/mapCoords.js'
 import drawTargets from '../models/drawTargets.js'
 import state from '../state.js'
 import resetWheel from '../models/resetWheel.js'
+import colourPicker from '../models/colourPicker.js'
+import generatePalette from '../models/generatePalette.js'
 
 export default (force = false) => {
   // Where on the canvas user clicked
@@ -13,11 +15,12 @@ export default (force = false) => {
   // get position of secondary target/s
   // call update canvas with new data
 
+  const buffer = 1
   const x = state.read('mouseX')
   const y = state.read('mouseY')
 
   const radius = state.read('radius')
-  if (!calcCircleBounds(x - radius, y - radius, radius)) {
+  if (!calcCircleBounds(x - radius, y - radius, radius - buffer)) {
     return
   }
   if (!state.read('isMouseDown') && !force) {
@@ -40,6 +43,16 @@ export default (force = false) => {
   const newTargets = mapCoords(r, theta, state.read('radius'), state.read('harmony'))
   state.write('targets', newTargets)
 
+  const colors = colourPicker(ctx, newTargets)
+
+  state.write('colors', colors)
+
   //   Paints new targets on canvas
   drawTargets(state.read('ctx'), state.read('targets'))
+
+  // Paints colors on palette
+  const palette = state.read('root').getElementById('cw-palette')
+  const palletteColors = generatePalette(colors)
+  palette.style.background = palletteColors
+  palette.setAttribute('colors', colors)
 }

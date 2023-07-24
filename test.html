@@ -5,11 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body style="display: grid; place-items: center; height: 100vh">
-    <canvas id="color-wheel"></canvas>
-    <button id="cw-btn-complementary">Complementary</button>
-    <button id="cw-btn-triad">Triad</button>
-    <div id="cw-palette"></div>
-    <script type="module" src="src/index.js"></script>
+  <style>
+    button {
+      height: 3rem;
+    }
+    body {
+      /* background: #000; */
+    }
+  </style>
+  <body style="display: grid; justify-content: center; height: 100vh">
+    <color-wheel></color-wheel>
+    <script type="module">
+      import defaultTheme from './themes/default/index.js'
+      defaultTheme()
+    </script>
   </body>
 </html>

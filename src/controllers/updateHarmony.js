@@ -1,10 +1,16 @@
 import state from '../state.js'
 
-export default (e) => {
-  if (e.target.id === 'cw-btn-complementary') {
+export default (harmony) => {
+  if (harmony === 'complementary') {
     state.write('harmony', 'complementary')
   }
-  if (e.target.id === 'cw-btn-triad') {
-    state.write('harmony', 'triad')
+  if (harmony === 'triadic') {
+    state.write('harmony', 'triadic')
+  }
+  if (harmony === 'analogous') {
+    state.write('harmony', 'analogous')
+  }
+  if (harmony === 'tetradic') {
+    state.write('harmony', 'tetradic')
   }
 }

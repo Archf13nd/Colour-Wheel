@@ -1,5 +1,6 @@
 import callCanvasEventFunctions from '../views/callCanvasEventFunctions.js'
 import callButtonEventFunctions from '../views/callButtonEventFunctions.js'
+import callSelectEventFunctions from '../views/callSelectEventFunctions.js'
 
 const createEvent = (theEvent, cb, element) => {
   element.addEventListener(theEvent, cb)
@@ -19,10 +20,14 @@ const createCBfunction = (element) => {
     if (tag === 'BUTTON') {
       callButtonEventFunctions(e)
     }
+    if (tag === 'SELECT') {
+      callSelectEventFunctions(e)
+    }
   }
 }
 
 const createEvents = (element, newEvent) => {
+  console.log('wyt')
   const cb = createCBfunction(element)
   return createEvent(newEvent, cb, element)
 }

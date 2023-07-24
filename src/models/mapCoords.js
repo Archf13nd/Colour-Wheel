@@ -17,14 +17,34 @@ const getComplementaryCoords = (r, theta, radius) => {
 
   return [complementaryCoords]
 }
+const getAnalogousCoords = (r, theta, radius) => {
+  const analogous1PolarTheta = (theta + Math.PI / 6) % (2 * Math.PI)
+  const analogous2PolarTheta = (theta + Math.PI / -6) % (2 * Math.PI)
+  const analogous1Coords = uncenterCartesianCoords(polar2Cartesian(r, analogous1PolarTheta), radius)
+  const analogous2Coords = uncenterCartesianCoords(polar2Cartesian(r, analogous2PolarTheta), radius)
+
+  return [analogous1Coords, analogous2Coords]
+}
+const getTetradicCoords = (r, theta, radius) => {
+  const tetradic1PolarTheta = (theta + Math.PI / 2) % (2 * Math.PI)
+  const tetradic2PolarTheta = (theta + Math.PI) % (2 * Math.PI)
+  const tetradic3PolarTheta = (theta - Math.PI / 2) % (2 * Math.PI)
+  const tetradic1Coords = uncenterCartesianCoords(polar2Cartesian(r, tetradic1PolarTheta), radius)
+  const tetradic2Coords = uncenterCartesianCoords(polar2Cartesian(r, tetradic2PolarTheta), radius)
+  const tetradic3Coords = uncenterCartesianCoords(polar2Cartesian(r, tetradic3PolarTheta), radius)
+
+  return [tetradic1Coords, tetradic2Coords, tetradic3Coords]
+}
 
 const mapCoords = (r, theta, radius, type = 'complementary') => {
   // Index 0 is main target
   const coords = []
   const mainTarget = uncenterCartesianCoords(polar2Cartesian(r, theta), radius)
   coords.push(mainTarget)
-  if (type === 'triad') coords.push(...getTriadCoords(r, theta, radius))
+  if (type === 'triadic') coords.push(...getTriadCoords(r, theta, radius))
   if (type === 'complementary') coords.push(...getComplementaryCoords(r, theta, radius))
+  if (type === 'analogous') coords.push(...getAnalogousCoords(r, theta, radius))
+  if (type === 'tetradic') coords.push(...getTetradicCoords(r, theta, radius))
 
   return coords
 }

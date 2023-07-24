@@ -17,9 +17,14 @@ const mouseUp = () => {
   state.write('isMouseDown', false)
 }
 
+const mouseLeave = () => {
+  state.write('isMouseDown', false)
+}
+
 export default (e) => {
   const type = e.type
   if (type === 'mousemove') mouseMove(e)
   if (type === 'mousedown') mouseDown(e)
   if (type === 'mouseup') mouseUp(e)
+  if (type === 'mouseleave') mouseLeave(e)
 }
