@@ -4,8 +4,7 @@ import state from './state.js'
 import { createCoordConversionMaps } from './util/mathUtil.js'
 import registerAllElements from './views/registerAllElements.js'
 
-// registerElements()
-const init = (root) => {
+export default (root) => {
   // Sets the apps root if given. Useful for encapsulating component to shadowDom
   if (root) {
     state.write('root', root)
@@ -13,15 +12,16 @@ const init = (root) => {
     state.write('root', document)
   }
 
-  const canvas = state.read('root').getElementById('color-wheel')
+  const canvas = state.read('root').getElementById('cw-color-wheel')
   const ctx = canvas.getContext('2d')
   state.write('canvas', canvas)
   state.write('ctx', ctx)
 
-  const size = Math.max(canvas.width, canvas.height)
+  const size = Math.max(canvas.offsetWidth, canvas.offsetHeight)
   if (canvas.width !== canvas.height) {
     canvas.width = size
     canvas.height = size
+    console.log(canvas.width, canvas.height)
   }
   const radius = size / 2
   state.write('radius', radius)
@@ -43,4 +43,3 @@ const init = (root) => {
 
   return state
 }
-export default init

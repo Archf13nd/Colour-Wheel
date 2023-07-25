@@ -27,7 +27,6 @@ const createCBfunction = (element) => {
 }
 
 const createEvents = (element, newEvent) => {
-  console.log('wyt')
   const cb = createCBfunction(element)
   return createEvent(newEvent, cb, element)
 }

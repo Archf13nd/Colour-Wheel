@@ -1,3 +1,82 @@
-div {
-  margin-top: 15rem;
+.cw__container {
+  --height: 30.3125em;
+  /* --fw: 500; */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 18.75em;
+  height: var(--height);
+  padding: calc(var(--height) / 24);
+  border: 2px solid green;
+  border-radius: 0.45em;
+}
+
+.cw__container * {
+  box-sizing: inherit;
+}
+
+.m1 {
+  margin-top: 1rem;
+}
+
+.top-thirds {
+  height: calc(var(--height) * 0.66);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.bottom-third {
+  flex-shrink: 0;
+  height: calc(var(--height) * 0.33);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cw__wheel {
+  width: calc(var(--height) / 2);
+  align-self: center;
+}
+
+.cw__select {
+  height: 1rem;
+  border: none;
+  width: 8rem;
+  align-self: flex-start;
+  fw: var(--fw, 700);
+  position: absolute;
+  top: 1.5rem;
+}
+
+.cw__field {
+}
+
+.cw__label {
+  font-weight: var(--fw, 700);
+  /* color: green; */
+}
+
+.cw__color-input {
+  height: 2.5rem;
+  width: 100%;
+}
+
+.cw__palette {
+  width: 100%;
+  height: calc(var(--height) / 8);
+  border: 1px solid black;
+}
+
+.cw__color-codes {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  height: 1em;
+  /* font-size: 0.8em; */
+}
+
+.cw__color-codes > div {
+  font-size: 0.875em;
+  text-align: center;
 }

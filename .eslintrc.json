@@ -3,7 +3,8 @@
   "extends": ["eslint:recommended"],
   "overrides": [],
   "env": {
-    "browser": true
+    "browser": true,
+    "node": true
   },
   "parserOptions": {
     "ecmaVersion": "latest",

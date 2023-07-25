@@ -4,7 +4,6 @@ import updateTargets from '../controllers/updateTargets.js'
 const click = (e) => {
   const id = e.target.id
   const harmony = id.match(/(complementary|triadic|analogous|tetradic)/g)[0]
-  console.log(harmony)
   updateHarmony(harmony)
   updateTargets(true)
 }

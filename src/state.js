@@ -13,7 +13,7 @@ const state = {
   harmony: 'triadic',
   elements: [
     {
-      id: 'color-wheel',
+      id: 'cw-color-wheel',
       events: ['mousemove', 'mousedown', 'mouseup', 'mouseleave']
     },
     {
@@ -39,6 +39,10 @@ const state = {
     {
       id: 'cw-select-colors',
       events: ['change']
+    },
+    {
+      id: 'cw-color-codes',
+      events: ['click']
     }
   ]
 }

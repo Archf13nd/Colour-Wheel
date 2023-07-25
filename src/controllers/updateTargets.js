@@ -6,6 +6,7 @@ import state from '../state.js'
 import resetWheel from '../models/resetWheel.js'
 import colourPicker from '../models/colourPicker.js'
 import generatePalette from '../models/generatePalette.js'
+import populateColorCodes from '../views/populateColorCode.js'
 
 export default (force = false) => {
   // Where on the canvas user clicked
@@ -49,6 +50,9 @@ export default (force = false) => {
 
   //   Paints new targets on canvas
   drawTargets(state.read('ctx'), state.read('targets'))
+
+  // Populate color codes
+  populateColorCodes()
 
   // Paints colors on palette
   const palette = state.read('root').getElementById('cw-palette')
