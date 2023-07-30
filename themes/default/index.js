@@ -1,6 +1,7 @@
 import core from '../../src/index.js'
 import customSelect from './customSelect.js'
 import styles from './styles.css'
+import customSelectStyles from './custom-select-styles.css'
 import HTMLTemplate from './template.html'
 
 export default () => {
@@ -17,7 +18,7 @@ export default () => {
         this.attachShadow({ mode: 'open' })
         this.shadowRoot.appendChild(templateContent)
         const styleEl = document.createElement('style')
-        styleEl.textContent = styles
+        styleEl.textContent = styles + customSelectStyles
         this.shadowRoot.appendChild(styleEl)
       }
       connectedCallback() {
