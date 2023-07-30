@@ -1,5 +1,5 @@
 import core from '../../src/index.js'
-
+import customSelect from './customSelect.js'
 import styles from './styles.css'
 import HTMLTemplate from './template.html'
 
@@ -21,6 +21,7 @@ export default () => {
         this.shadowRoot.appendChild(styleEl)
       }
       connectedCallback() {
+        customSelect(this.shadowRoot)
         core(this.shadowRoot)
       }
     }

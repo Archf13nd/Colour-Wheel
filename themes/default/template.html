@@ -1,11 +1,14 @@
 <div class="cw__container">
   <div class="top-thirds">
-    <select class="cw__select" name="colors" id="cw-select-colors">
-      <option value="complementary">Complementary!!!</option>
-      <option value="analogous">Analogous</option>
-      <option value="triadic">Triadic</option>
-      <option value="tetradic">Tetradic</option>
-    </select>
+    <div class="select-custom" id="cw-select-harmony">
+      <div class="select-custom__display">Select harmony ...</div>
+      <div class="select-custom__options">
+        <div value="complementary" class="select-custom__option">Complementary</div>
+        <div value="tetradic" class="select-custom__option">Tetradic</div>
+        <div value="analogous" class="select-custom__option">Analogous</div>
+        <div value="triadic" class="select-custom__option">Triadic</div>
+      </div>
+    </div>
     <canvas class="cw__wheel" id="cw-color-wheel"></canvas>
   </div>
   <div class="bottom-third">

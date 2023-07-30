@@ -37,7 +37,7 @@ const state = {
       events: ['click']
     },
     {
-      id: 'cw-select-colors',
+      id: 'cw-select-harmony',
       events: ['change']
     },
     {
