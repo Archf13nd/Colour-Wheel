@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "A colour wheel and palette generator",
   "private": true,
-  "alias": {
-    "@core": "./src/index.js",
-    "@default-theme": "./themes/default/index.js"
-  },
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
