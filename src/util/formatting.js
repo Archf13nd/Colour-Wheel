@@ -1,5 +1,6 @@
 const formatRBGAString = (string) => {
-  let numbers = string.slice(4, 17)
+  const endString = string.lastIndexOf(',')
+  let numbers = string.slice(4, endString)
   numbers += ')'
   numbers = numbers.split(' ').join('')
   return numbers

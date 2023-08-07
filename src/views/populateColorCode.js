@@ -8,7 +8,7 @@ const populateColorCodes = () => {
   colors.forEach((col) => {
     const newString = formatRBGAString(col)
 
-    codeContainer.insertAdjacentHTML('afterbegin', `<div>${newString}</div>`)
+    codeContainer.insertAdjacentHTML('beforeend', `<div>${newString}</div>`)
   })
 }
 
