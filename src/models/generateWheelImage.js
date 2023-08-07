@@ -26,7 +26,14 @@ export default (canvas, ctx) => {
       const saturation = r / radius
 
       let [red, green, blue] = convertHSV2RGB(hue, saturation, 1)
+
       let alpha = 255
+      if (saturation > 0.993 && saturation < 0.995) {
+        alpha = 160
+      } else if (saturation > 0.995) {
+        alpha = 60
+      }
+
       image.data[index + 0] = red
       image.data[index + 1] = green
       image.data[index + 2] = blue
